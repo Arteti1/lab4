@@ -65,7 +65,7 @@ def extract_hashtags(text):
     """
     pattern = r"#\w+"
     return re.findall(pattern, text)
-    pass
+  
 
 def extract_mentions(text):
     """
@@ -73,7 +73,7 @@ def extract_mentions(text):
     """
     pattern = r"@\w+"
     return re.findall(pattern, text)
-    pass
+    
 
 # === Функції для аналізу тексту ===
 
@@ -141,7 +141,9 @@ def extract_variant_data(text, variant_pattern):
     """
     Вилучає дані з тексту за допомогою патерну, специфічного для варіанту.
     """
-    r"[A-Za-z]+-VR\d+"
+    pattern = r'\b[A-Za-z]+-VR\d+\b'
+    return re.findall(pattern, text)
+    
    
 
 # === Головна частина програми ===
@@ -192,13 +194,11 @@ def main():
                     print("Номер телефону невалідний.")
 
             elif choice == '3':
-                variant = input("Введіть номер вашого варіанту (1-30): ")
-                # TODO: Визначте патерн для вашого варіанту
-                # Наприклад, для варіанту 1 (квантові комп'ютери):
-                # pattern = r'\b[A-Z]{2}-\d{4}\b'
-                # variant_data = extract_variant_data(text_to_analyze, pattern)
-                # print(f"Знайдені дані: {variant_data}")
-                print("Цю частину необхідно реалізувати самостійно згідно вашого варіанту.")
+                
+               
+                pattern = r'\b[A-Za-z]\b'
+                variant_data = extract_variant_data(text_to_analyze, pattern)
+                print(f"Знайдені дані: {variant_data}")
 
             elif choice == '4':
                 print("Дякуємо за використання аналізатора!")
